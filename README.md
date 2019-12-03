@@ -34,6 +34,7 @@ Typically, these predictions are represented by a set of possible trajectories l
 **Before we get into the details, let me explain what we are going to discuss in this repository.**
 
 <b>
+ 
 1. First, we'll go through a brief overview where you will learn a bit more about the inputs and outputs to prediction.
 
 2. Next, we will talk about how prediction is actually done.
