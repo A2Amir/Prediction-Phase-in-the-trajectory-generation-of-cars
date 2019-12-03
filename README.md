@@ -31,5 +31,21 @@ Typically, these predictions are represented by a set of possible trajectories l
 
  <p align="right"> <img src="./img/4.png" style="right;" alt="The responsibility of the prediction module " width="700" height="400"> </p> 
 
+**Before we get into the details, let me explain what we are going to discuss in this repository.**
+
+<b>
+1. First, we'll go through a brief overview where you will learn a bit more about the inputs and outputs to prediction.
+
+2. Next, we will talk about how prediction is actually done.
+
+3. We will discuss the two main classes of prediction techniques:model-based approaches and data-driven approaches. Model-based approaches use mathematical models of motion to predict trajectories and data-driven approaches rely on machine learning and examples to learn from (trajectory clustering will be expalined).
+
+4. Then, we will dig into model-based approaches where I will introduce process models as a mathematical technique for modelling various maneuvers like lane changes, vehicle following, etc and introduce multi-modal estimators as an effective technique for handling the uncertainty associated with prediction, namely, the uncertainty about which maneuver an object will do in a particular situation.
+
+5. Finally, we will dive deep into hybrid approaches which use data and process models to predict motion through a cycle of intense classification where we try to figure out what a driver wants to do and trajectory generation where we try to figure out how they are likely to do it.
+
+6. We will end by implementing an algorithm called Naive Bayes to predict the motion of a car at a T-shaped intersection like the one you just saw.
+
+</b>
 
 
