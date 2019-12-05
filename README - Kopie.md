@@ -9,6 +9,8 @@ A prediction module uses a map and data from sensor fusion to generate predictio
 
 
 Example Input - Sensor Fusion
+
+
         {
             "timestamp" : 34512.21,
             "vehicles" : [
@@ -36,7 +38,12 @@ Example Input - Sensor Fusion
                 },
             ]
         }
+        
+        
+        
 Example Output
+
+
         {
             "timestamp" : 34512.21,
             "vehicles" : [
