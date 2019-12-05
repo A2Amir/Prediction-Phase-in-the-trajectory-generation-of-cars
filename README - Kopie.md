@@ -1,14 +1,14 @@
 
 
 
-Inputs and Outputs to Prediction
+# Inputs and Outputs to Prediction
 
 
 
 A prediction module uses a map and data from sensor fusion to generate predictions for what all other dynamic objects in view are likely to do. To make this clearer, let's look at an example (in json format) of what the input to and output from prediction might look like.
 
 
-Example Input - Sensor Fusion
+## Example Input - Sensor Fusion
 
 
         {
@@ -41,7 +41,7 @@ Example Input - Sensor Fusion
         
         
         
-Example Output
+## Example Output
 
 
         {
@@ -187,6 +187,7 @@ Example Output
                 }
             ]
         }
+
 Notes
 1. The predicted trajectories shown here only extend out a few seconds. In reality the predictions we make extend to a horizon of 10-20 seconds. 
 2. The trajectories shown have 0.5 second resolution. In reality we would generate slightly finer-grained predictions. 
