@@ -82,7 +82,7 @@ With all data driven prediction techniques, there will be two phases:
 1.	An offline training phase where the algorithm learns a model from data
 2.	Online prediction phase where it uses that model to generate predictions.
 
-#### Offline training phase
+#### Offline training phase:
 * The first step of an offline training phase is to get a lot of data which you might do by placing a static camera at an intersection.
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
 * Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below.
@@ -107,7 +107,20 @@ With all data driven prediction techniques, there will be two phases:
  
  At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
 
+#### Online prediction phase:
 
+Once our clustering algorithm has identified clusters and prototype trajectories,in this case three clusters with three prototype trajectories each,we can begin the job of online prediction for a vehicle that we meet on the road.
+
+ <p align="right"> <img src="./img/10.png" style="right;" alt="Online prediction phase" width="700" height="400"> </p> 
+
+
+* First, we observed the vehicle's partial trajectory.
+* Next we compare it to the corresponding segments of the prototype trajectories for each cluster.This comparison is done using the same similarity measure we used earlier to perform the clustering.The belief for each cluster is updated based on how similar the partial trajectory is to the prototype trajectories.
+* And finally, we compute a predicted trajectory for each cluster.For example, by taking the most similar prototype trajectory.
+
+Let's make this more clear by following the gif below:
+
+ <p align="right"> <img src="./img/33.gif" style="right;" alt="Online prediction phase" width="700" height="400"> </p> 
 
 ## Pros and Cons:
 
