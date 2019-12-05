@@ -70,7 +70,10 @@ The important takeaway for purely model based prediction is that we have some ba
 
 Well with the purely data driven approach we have a truly blackbox algorithm and this algorithm will be trained on lots of training data. Once it's trained we just fitted the observed behavior and let it make a prediction about what will happen next.
 
-  ### 1. Data Driven Example - Trajectory Clustering
+
+ <p align="right"> <img src="./img/6.png" style="right;" alt="Data driven approach" width="700" height="400"> </p> 
+
+  ### 3.1. Data Driven Example - Trajectory Clustering
 
 
 There are many ways that machine learning algorithms can be used in purely data driven approaches for prediction. Since you already know machine-learning algorithms, we won't go into these techniques in too much detail.
@@ -84,14 +87,14 @@ With all data driven prediction techniques, there will be two phases:
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
 * Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below.
 
- <p align="right"> <img src="./img/6.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
+ <p align="right"> <img src="./img/7.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
 
 * Next, we need to define some mathematical measure of trajectory similarity and there are many ways to do this but intuitively we want something that says a trajectory like the red line is more similar to the pink  line than it is to the blue line. If you're interested in learning more,check this [paper](http://video.udacity-data.com.s3.amazonaws.com/topher/2017/July/5978c2c6_trajectory-clustering/trajectory-clustering.pdf) that discuss measures of similarity in detail.
 
 
 * Once we have a measure of similarity we can use a machine learning algorithm like agglomerative clustering or a spectral clustering to clustered these trajectories. In the case of a four-way stop intersection,we would expect to see 12 clusters since at each of the four stop signs cars can do one of three things: turn right,go straight, turn left. If we were looking at just one of those four stop signs, we would expect to see a cluster of trajectories for left turns, going straight, and turning right.
 
- <p align="right"> <img src="./img/7.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
+ <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
 
 **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
 
@@ -100,7 +103,7 @@ With all data driven prediction techniques, there will be two phases:
 * Once the trajectories have been grouped in too clusters, it is useful to define what prototype trajectories look like for each cluster. For the left turn cluster, maybe these three trajectories are a good model.They provide a compact representation of what left turns typically look like at this intersection.
 
 
- <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
+ <p align="right"> <img src="./img/9.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
  
  At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
 
