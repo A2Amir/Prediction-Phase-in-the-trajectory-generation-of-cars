@@ -1,5 +1,8 @@
 # Prediction Phase in the trajectory generation of cars
- 
+
+## 1.Introduction to Prediction
+
+
 To understand what the prediction does, imagine at T-shaped intersection. You are a self-driving car that has just pulled up to the stop sign. You want to turn left but your sensors notice another vehicle coming from the left. At this point, you as a human probably know the green vehicle will do one of two things,
 * Either it will go straight 
 * Or it will go right.
@@ -49,23 +52,77 @@ Typically, these predictions are represented by a set of possible trajectories l
 
 </b>
 
-## 1.Inputs and Outputs to Prediction
+## 2.Inputs and Outputs to Prediction
 
  To see a bit more about the inputs and outputs of prediction, check this [file](https://github.com/A2Amir/Prediction-Phase-in-the-trajectory-generation-of-cars/blob/master/Inputs%20and%20Outputs%20to%20Prediction.md)
  
-## 2.Model-Based 
-For the example explained above, the way we would handle this with the model based approach is as follows:
-* First we would come up with two process models (one for going straight and one for turning right).
-* And we would use some simple trajectory generator to figure out what trajectory we would expect to see if the driver were going straight or turning right.
-* Then we would pay attention to the actual behavior of the target vehicle and using a multimodal estimation algorithm. we would compare observed trajectory to the ones we would expect for each of our models and then based on that we would assign a probability to each of the possible trajectories.
+## 3.Model-Based 
+
+Ideally, we would also like to include, in our predictions,all the insights we have about driver behavior, physics, or vehicle dynamics. This is where model based approaches can help.
+The way these approaches typically work is as follows:
+
+#### 1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
 
 
+#### 2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here.
 
- <p align="right"> <img src="./img/5.png" style="right;" alt="Model-Based  " width="700" height="400"> </p> 
+  In general, there is a tradeoff between simplicity and accuracy when choosing a process model:
 
-The important takeaway for purely model based prediction is that we have some bank of possible behaviors and each has a mathematical model of motion which takes into account the physical capabilities of the object as well as the constraints imposed by the road traffic laws and other restrictions.
+* One very simple approach is to treat the car as a point particle with holonomic properties. This means we assume the point can move in any direction at any time. Which of course is a very simplistic assumption. 
 
-## 3. Data driven approach
+* The simplest motion models are linear. Constant velocity lane following for any coordinates would look something like below. Where the car moves forward at each timestep and is assumed to keep a constant distance to the lane center. In practice, linear point models usually wind up being too simplistic. 
+
+ <p align="right"> <img src="./img/11.png" style="right;" alt=" process model  " width="400" height="200"> </p> 
+ 
+* The next step in complexity happens when we allow non-linearities into our model. Typically, if you start incorporating heading into our state vector, you will end up with sines and cosines in our model equations. 
+
+   An example of a non-linear point model of lane following could look like below in Cartesian coordinates. Note the presence of cosine and sine, which are where the non-linearity comes in. 
+
+ <p align="right"> <img src="./img/12.png" style="right;" alt=" process model  " width="400" height="200"> </p> 
+
+* The next jump in complexity happens when we take into account that a car is a non-holonomic system. A popular approach is to use a bicycle model, which looks like this in an inertial cartesian reference frame. A bicycle model takes two inputs, the steering angle and the acceleration. 
+
+ <p align="right"> <img src="./img/13.png" style="right;" alt=" process model  " width="400" height="300"> </p> 
+
+   For the steering angle, we could use a PID controller with the target lane center line as the reference line. For the acceleration, we could once again use a constant velocity model, or a constant acceleration model, or if we wanted more complex acceleration behavior, we could use a PID controller with the speed limit as the target. 
+
+   In practice, these sorts of models tend to strike a good balance between simplicity and accuracy. But you could always go more complex by including more details about vehicle dynamics. 
+
+* you could use a dynamic bicycle model, which looks like below.Note the presence of terms like F <sub>c, f</sub>  which represents the lateral force on the tires at the front of the vehicle, and F<sub>c, r</sub>   which represents the lateral force on the rear tire. 
+
+ <p align="right"> <img src="./img/14.png" style="right;" alt=" to use the process models  " width="400" height="200"> </p> 
+
+ 
+<b> 
+Notice: how all the models contain an additional term W. This is where the uncertainty on the process model is stored. A classic choice to represent uncertainty is a multivariate Gaussian with zero mean. 
+
+Notice: There is so much uncertainty inherent to predicting the behaviors of other drivers that minor accuracy improvements to process models just aren't worth the computational overhead that they come with. 
+
+</b>
+
+### 3.	step three, which is to use the process models to compute the probability of each behavior. 
+
+  1. This is done by taking the observed state of the object at time t-1, running the process models to compute the expected state of the object at time t. Then we compare the observed state of the object at time t with what our process models predicted. 
+
+   For example,below on the left we see two images of a car. At time k−1 we predicted where the car would be if it were to go straight vs go right. Then at time k we look at where the car actually is. The graph on the right shows the car's observed s coordinate along with the probability distributions for where we expected the car to be at that time. In this case, the s that we observe is substantially more consistent with turning right than going straight.
+
+ <p align="right"> <img src="./img/15.png" style="right;" alt=" to use the process models  " width="700" height="400"> </p> 
+
+
+ 2. And we use a multimodal estimation algorithm to derive the probability of each maneuver.
+
+    In the image below you can see a bar chart representing probabilities of various clusters over time. Multiple model algorithms serve a similar purpose for model based approaches: they are responsible for maintaining beliefs for the probability of each maneuver. The algorithm we discussed is called the Autonomous Multiple Model algorithm (AMM). AMM can be summarized with this equation:
+    
+     <p align="right"> <img src="./img/16.png" style="right;" alt="  Autonomous Multiple Model algorithm (AMM) " width="700" height="400"> </p> 
+
+
+   The paper, "[A comparative study of multiple model algorithms for maneuvering target tracking](https://d17h27t6h515a5.cloudfront.net/topher/2017/June/5953fc34_a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking/a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking.pdf)" is a good reference to learn more.
+
+
+#### 4.	The fourth and final step is to predict a trajectory for each behavior. Trajectory generation is straightforward once we have a process model. We simply iterate our model over and over until we've generated a prediction that spans whatever time horizon we are supposed to cover. Note that each iteration of the process model will necessarily add uncertainty to our prediction.
+
+
+## 4. Data driven approach
 
 
 Well with the purely data driven approach we have a truly blackbox algorithm and this algorithm will be trained on lots of training data. Once it's trained we just fitted the observed behavior and let it make a prediction about what will happen next.
@@ -83,6 +140,7 @@ With all data driven prediction techniques, there will be two phases:
 2.	Online prediction phase where it uses that model to generate predictions.
 
 #### Offline training phase:
+
 * The first step of an offline training phase is to get a lot of data which you might do by placing a static camera at an intersection.
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
 * Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below.
@@ -94,9 +152,9 @@ With all data driven prediction techniques, there will be two phases:
 
 * Once we have a measure of similarity we can use a machine learning algorithm like agglomerative clustering or a spectral clustering to clustered these trajectories. In the case of a four-way stop intersection,we would expect to see 12 clusters since at each of the four stop signs cars can do one of three things: turn right,go straight, turn left. If we were looking at just one of those four stop signs, we would expect to see a cluster of trajectories for left turns, going straight, and turning right.
 
- <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
-
-**Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
+ <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p>
+ 
+ **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
 
 
 
@@ -105,7 +163,7 @@ With all data driven prediction techniques, there will be two phases:
 
  <p align="right"> <img src="./img/9.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
  
- At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
+   At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
 
 #### Online prediction phase:
 
@@ -118,12 +176,18 @@ Once our clustering algorithm has identified clusters and prototype trajectories
 * Next we compare it to the corresponding segments of the prototype trajectories for each cluster.This comparison is done using the same similarity measure we used earlier to perform the clustering.The belief for each cluster is updated based on how similar the partial trajectory is to the prototype trajectories.
 * And finally, we compute a predicted trajectory for each cluster.For example, by taking the most similar prototype trajectory.
 
-Let's make this more clear by following the gif below:
+  Let's make this more clear by following the gif below:
 
  <p align="right"> <img src="./img/33.gif" style="right;" alt="Online prediction phase" width="700" height="400"> </p> 
 
-## Pros and Cons:
+## 5. Hybrid Approaches:
 
 Model based approaches incorporate our knowledge of physics constraints imposed by the road traffic and  data driven approaches are nice because they let us use data to extract subtle patterns that would otherwise be missed by model based approaches.For example differences in vehicle behavior at an intersection during different times.
+
+In practice, the best way to do prediction is often by taking a hybrid approach that takes advantage of the strengths of both types of approaches. Remember earlier when we talked about how model based approaches combine process models with a multimodal estimator? Well, the multimodal estimator could be replaced with a machine learning approach. To replace that component with a machine learning approach, the type of algorithm we need is a Naive Bayes classifier.
+
+
+
+
 
 
