@@ -60,14 +60,21 @@ The way these approaches typically work is as follows.
 
 1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
 
-2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here. In general, there is a tradeoff between simplicity and accuracy when choosing a process model.
+2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here.
+
+In general, there is a tradeoff between simplicity and accuracy when choosing a process model:
 
 * One very simple approach is to treat the car as a point particle with holonomic properties. This means we assume the point can move in any direction at any time. Which of course is a very simplistic assumption. 
 
 * The simplest motion models are linear. Constant velocity lane following for any coordinates would look something like below. Where the car moves forward at each timestep and is assumed to keep a constant distance to the lane center. In practice, linear point models usually wind up being too simplistic. 
 
- <p align="right"> <img src="./img/11.png" style="right;" alt="The responsibility of the prediction module " width="400" height="200"> </p> 
+ <p align="right"> <img src="./img/11.png" style="right;" alt=" process model  " width="400" height="200"> </p> 
+ 
+* The next step in complexity happens when we allow non-linearities into our model. Typically, if you start incorporating heading into our state vector, you will end up with sines and cosines in our model equations. 
 
+An example of a non-linear point model of lane following could look like below in Cartesian coordinates. Note the presence of cosine and sine, which are where the non-linearity comes in. 
+
+ <p align="right"> <img src="./img/12.png" style="right;" alt=" process model  " width="400" height="200"> </p> 
 
 ## 3. Data driven approach
 
