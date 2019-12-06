@@ -105,6 +105,20 @@ Notice: There is so much uncertainty inherent to predicting the behaviors of oth
 
  <p align="right"> <img src="./img/15.png" style="right;" alt=" to use the process models  " width="700" height="400"> </p> 
 
+
+ 2. And we use a multimodal estimation algorithm to derive the probability of each maneuver.
+
+    In the image below you can see a bar chart representing probabilities of various clusters over time. Multiple model algorithms serve a similar purpose for model based approaches: they are responsible for maintaining beliefs for the probability of each maneuver. The algorithm we discussed is called the Autonomous Multiple Model algorithm (AMM). AMM can be summarized with this equation:
+    
+     <p align="right"> <img src="./img/15.png" style="right;" alt="  Autonomous Multiple Model algorithm (AMM) " width="700" height="400"> </p> 
+
+
+   The paper, "[A comparative study of multiple model algorithms for maneuvering target tracking](https://d17h27t6h515a5.cloudfront.net/topher/2017/June/5953fc34_a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking/a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking.pdf)" is a good reference to learn more.
+
+
+#### 4.	The fourth and final step is to predict a trajectory for each behavior. Trajectory generation is straightforward once we have a process model. We simply iterate our model over and over until we've generated a prediction that spans whatever time horizon we are supposed to cover. Note that each iteration of the process model will necessarily add uncertainty to our prediction.
+
+
 ## 3. Data driven approach
 
 
