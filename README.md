@@ -186,7 +186,14 @@ Model based approaches incorporate our knowledge of physics constraints imposed 
 
 In practice, the best way to do prediction is often by taking a hybrid approach that takes advantage of the strengths of both types of approaches. Remember earlier when we talked about how model based approaches combine process models with a multimodal estimator? Well, the multimodal estimator could be replaced with a machine learning approach. To replace that component with a machine learning approach, the type of algorithm we need is a Naive Bayes classifier.
 
+ <p align="right"> <img src="./img/44.gif" style="right;" alt="Online prediction phase" > </p> 
 
+
+When Naive Bayes goes in distribution for the feature variables then called Gaussian Naive Bayes.
+
+In practice, implementing a good Gaussian Naive Bayes classifier is all about:
+* One, selecting the correct feature variables for the classification problem.
+* Two identifying some good means and variances for different classes.And we can either guess these numbers or we can look at lots of data to learn them(if you have access to lots of data).
 
 
 
