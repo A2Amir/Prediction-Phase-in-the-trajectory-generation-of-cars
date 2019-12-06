@@ -128,7 +128,7 @@ Notice: There is so much uncertainty inherent to predicting the behaviors of oth
 Well with the purely data driven approach we have a truly blackbox algorithm and this algorithm will be trained on lots of training data. Once it's trained we just fitted the observed behavior and let it make a prediction about what will happen next.
 
 
- <p align="right"> <img src="./img/6.png" style="right;" alt="Data driven approach" width="700" height="400"> </p> 
+ <p align="right"> <img src="./img/6.png" style="right;" alt="Data driven approach" width="700" height="300"> </p> 
 
   ### 3.1. Data Driven Example - Trajectory Clustering
 
@@ -186,8 +186,22 @@ Model based approaches incorporate our knowledge of physics constraints imposed 
 
 In practice, the best way to do prediction is often by taking a hybrid approach that takes advantage of the strengths of both types of approaches. Remember earlier when we talked about how model based approaches combine process models with a multimodal estimator? Well, the multimodal estimator could be replaced with a machine learning approach. To replace that component with a machine learning approach, the type of algorithm we need is a Naive Bayes classifier.
 
+ <p align="right"> <img src="./img/44.gif" style="right;" alt="Online prediction phase" > </p> 
 
 
+When Naive Bayes goes in distribution for the feature variables then called Gaussian Naive Bayes.
+
+In practice, implementing a good Gaussian Naive Bayes classifier is all about:
+* One, selecting the correct feature variables for the classification problem.
+* Two identifying some good means and variances for different classes.And we can either guess these numbers or we can look at lots of data to learn them(if you have access to lots of data).
+
+
+
+## 6. Frenet Coordinates
+
+"Frenet Coordinates" are a way of representing position on a road in a more intuitive way than traditional (x,y) Cartesian Coordinates.
+
+With Frenet coordinates, we use the variables s and d to describe a vehicle's position on the road. The s coordinate represents distance along the road (also known as longitudinal displacement) and the d coordinate represents side-to-side position on the road (also known as lateral displacement).
 
 
 
