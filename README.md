@@ -56,7 +56,7 @@ Typically, these predictions are represented by a set of possible trajectories l
 ## 2.Model-Based 
 
 Ideally, we would also like to include, in our predictions,all the insights we have about driver behavior, physics, or vehicle dynamics. This is where model based approaches can help.
-The way these approaches typically work is as follows.
+The way these approaches typically work is as follows:
 
 #### 1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
 
@@ -115,6 +115,7 @@ With all data driven prediction techniques, there will be two phases:
 2.	Online prediction phase where it uses that model to generate predictions.
 
 #### Offline training phase:
+
 * The first step of an offline training phase is to get a lot of data which you might do by placing a static camera at an intersection.
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
 * Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below.
@@ -126,8 +127,9 @@ With all data driven prediction techniques, there will be two phases:
 
 * Once we have a measure of similarity we can use a machine learning algorithm like agglomerative clustering or a spectral clustering to clustered these trajectories. In the case of a four-way stop intersection,we would expect to see 12 clusters since at each of the four stop signs cars can do one of three things: turn right,go straight, turn left. If we were looking at just one of those four stop signs, we would expect to see a cluster of trajectories for left turns, going straight, and turning right.
 
- <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
-   **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
+ <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p>
+ 
+ **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
 
 
 
