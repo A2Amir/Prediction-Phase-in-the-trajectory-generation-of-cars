@@ -87,7 +87,7 @@ The way these approaches typically work is as follows:
 
 * you could use a dynamic bicycle model, which looks like below.Note the presence of terms like F <sub>c, f</sub>  which represents the lateral force on the tires at the front of the vehicle, and F<sub>c, r</sub>   which represents the lateral force on the rear tire. 
 
- <p align="right"> <img src="./img/14.png" style="right;" alt=" process model  " width="500" height="200"> </p> 
+ <p align="right"> <img src="./img/15.png" style="right;" alt=" to use the process models  " width="700" height="400"> </p> 
 
  
 <b> 
@@ -96,6 +96,13 @@ Notice: how all the models contain an additional term W. This is where the uncer
 Notice: There is so much uncertainty inherent to predicting the behaviors of other drivers that minor accuracy improvements to process models just aren't worth the computational overhead that they come with. 
 
 </b>
+
+### 3.	step three, which is to use the process models to compute the probability of each behavior. 
+
+  1. This is done by taking the observed state of the object at time t-1, running the process models to compute the expected state of the object at time t. Then we compare the observed state of the object at time t with what our process models predicted. 
+
+   For example,below on the left we see two images of a car. At time k−1 we predicted where the car would be if it were to go straight vs go right. Then at time k we look at where the car actually is. The graph on the right shows the car's observed s coordinate along with the probability distributions for where we expected the car to be at that time. In this case, the s that we observe is substantially more consistent with turning right than going straight.
+
 
 ## 3. Data driven approach
 
