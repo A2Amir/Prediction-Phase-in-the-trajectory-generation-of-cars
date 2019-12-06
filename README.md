@@ -217,4 +217,6 @@ s(t)=v<sub>0</sub>t
 
 d(t)=0
 
+## 7. Implement Naive Bayes C++ and Python
+
 
