@@ -79,8 +79,23 @@ The way these approaches typically work is as follows.
 
 * The next jump in complexity happens when we take into account that a car is a non-holonomic system. A popular approach is to use a bicycle model, which looks like this in an inertial cartesian reference frame. A bicycle model takes two inputs, the steering angle and the acceleration. 
 
+ <p align="right"> <img src="./img/13.png" style="right;" alt=" process model  " width="400" height="400"> </p> 
+
    For the steering angle, we could use a PID controller with the target lane center line as the reference line. For the acceleration, we could once again use a constant velocity model, or a constant acceleration model, or if we wanted more complex acceleration behavior, we could use a PID controller with the speed limit as the target. 
 
+   In practice, these sorts of models tend to strike a good balance between simplicity and accuracy. But you could always go more complex by including more details about vehicle dynamics. 
+
+* you could use a dynamic bicycle model, which looks like below.Note the presence of terms like F <sub>c, f</sub>  which represents the lateral force on the tires at the front of the vehicle, and F<sub>c, r</sub>   which represents the lateral force on the rear tire. 
+
+ <p align="right"> <img src="./img/14.png" style="right;" alt=" process model  " width="500" height="200"> </p> 
+
+ 
+<b> 
+Note: how all the models contain an additional term W. This is where the uncertainty on the process model is stored. A classic choice to represent uncertainty is a multivariate Gaussian with zero mean. 
+
+Notice: There is so much uncertainty inherent to predicting the behaviors of other drivers that minor accuracy improvements to process models just aren't worth the computational overhead that they come with. 
+
+</b>
 
 ## 3. Data driven approach
 
@@ -112,7 +127,6 @@ With all data driven prediction techniques, there will be two phases:
 * Once we have a measure of similarity we can use a machine learning algorithm like agglomerative clustering or a spectral clustering to clustered these trajectories. In the case of a four-way stop intersection,we would expect to see 12 clusters since at each of the four stop signs cars can do one of three things: turn right,go straight, turn left. If we were looking at just one of those four stop signs, we would expect to see a cluster of trajectories for left turns, going straight, and turning right.
 
  <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
-
    **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
 
 
