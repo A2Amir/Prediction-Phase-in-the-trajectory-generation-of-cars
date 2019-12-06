@@ -87,7 +87,7 @@ The way these approaches typically work is as follows:
 
 * you could use a dynamic bicycle model, which looks like below.Note the presence of terms like F <sub>c, f</sub>  which represents the lateral force on the tires at the front of the vehicle, and F<sub>c, r</sub>   which represents the lateral force on the rear tire. 
 
- <p align="right"> <img src="./img/15.png" style="right;" alt=" to use the process models  " width="700" height="400"> </p> 
+ <p align="right"> <img src="./img/14.png" style="right;" alt=" to use the process models  " width="400" height="200"> </p> 
 
  
 <b> 
@@ -103,6 +103,7 @@ Notice: There is so much uncertainty inherent to predicting the behaviors of oth
 
    For example,below on the left we see two images of a car. At time k−1 we predicted where the car would be if it were to go straight vs go right. Then at time k we look at where the car actually is. The graph on the right shows the car's observed s coordinate along with the probability distributions for where we expected the car to be at that time. In this case, the s that we observe is substantially more consistent with turning right than going straight.
 
+ <p align="right"> <img src="./img/15.png" style="right;" alt=" to use the process models  " width="700" height="400"> </p> 
 
 ## 3. Data driven approach
 
