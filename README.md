@@ -110,7 +110,7 @@ Notice: There is so much uncertainty inherent to predicting the behaviors of oth
 
     In the image below you can see a bar chart representing probabilities of various clusters over time. Multiple model algorithms serve a similar purpose for model based approaches: they are responsible for maintaining beliefs for the probability of each maneuver. The algorithm we discussed is called the Autonomous Multiple Model algorithm (AMM). AMM can be summarized with this equation:
     
-     <p align="right"> <img src="./img/15.png" style="right;" alt="  Autonomous Multiple Model algorithm (AMM) " width="700" height="400"> </p> 
+     <p align="right"> <img src="./img/16.png" style="right;" alt="  Autonomous Multiple Model algorithm (AMM) " width="700" height="400"> </p> 
 
 
    The paper, "[A comparative study of multiple model algorithms for maneuvering target tracking](https://d17h27t6h515a5.cloudfront.net/topher/2017/June/5953fc34_a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking/a-comparative-study-of-multiple-model-algorithms-for-maneuvering-target-tracking.pdf)" is a good reference to learn more.
