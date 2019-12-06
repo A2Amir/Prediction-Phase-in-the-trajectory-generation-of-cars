@@ -54,16 +54,20 @@ Typically, these predictions are represented by a set of possible trajectories l
  To see a bit more about the inputs and outputs of prediction, check this [file](https://github.com/A2Amir/Prediction-Phase-in-the-trajectory-generation-of-cars/blob/master/Inputs%20and%20Outputs%20to%20Prediction.md)
  
 ## 2.Model-Based 
-For the example explained above, the way we would handle this with the model based approach is as follows:
-* First we would come up with two process models (one for going straight and one for turning right).
-* And we would use some simple trajectory generator to figure out what trajectory we would expect to see if the driver were going straight or turning right.
-* Then we would pay attention to the actual behavior of the target vehicle and using a multimodal estimation algorithm. we would compare observed trajectory to the ones we would expect for each of our models and then based on that we would assign a probability to each of the possible trajectories.
 
+Ideally, we would also like to include, in our predictions,all the insights we have about driver behavior, physics, or vehicle dynamics. This is where model based approaches can help.
+The way these approaches typically work is as follows.
 
+1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
 
- <p align="right"> <img src="./img/5.png" style="right;" alt="Model-Based  " width="700" height="400"> </p> 
+2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here. In general, there is a tradeoff between simplicity and accuracy when choosing a process model.
 
-The important takeaway for purely model based prediction is that we have some bank of possible behaviors and each has a mathematical model of motion which takes into account the physical capabilities of the object as well as the constraints imposed by the road traffic laws and other restrictions.
+* One very simple approach is to treat the car as a point particle with holonomic properties. This means we assume the point can move in any direction at any time. Which of course is a very simplistic assumption. 
+
+* The simplest motion models are linear. Constant velocity lane following for any coordinates would look something like below. Where the car moves forward at each timestep and is assumed to keep a constant distance to the lane center. In practice, linear point models usually wind up being too simplistic. 
+
+ <p align="right"> <img src="./img/11.png" style="right;" alt="The responsibility of the prediction module " width="400" height="200"> </p> 
+
 
 ## 3. Data driven approach
 
