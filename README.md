@@ -1,5 +1,8 @@
 # Prediction Phase in the trajectory generation of cars
- 
+
+## 1.Introduction to Prediction
+
+
 To understand what the prediction does, imagine at T-shaped intersection. You are a self-driving car that has just pulled up to the stop sign. You want to turn left but your sensors notice another vehicle coming from the left. At this point, you as a human probably know the green vehicle will do one of two things,
 * Either it will go straight 
 * Or it will go right.
@@ -49,11 +52,11 @@ Typically, these predictions are represented by a set of possible trajectories l
 
 </b>
 
-## 1.Inputs and Outputs to Prediction
+## 2.Inputs and Outputs to Prediction
 
  To see a bit more about the inputs and outputs of prediction, check this [file](https://github.com/A2Amir/Prediction-Phase-in-the-trajectory-generation-of-cars/blob/master/Inputs%20and%20Outputs%20to%20Prediction.md)
  
-## 2.Model-Based 
+## 3.Model-Based 
 
 Ideally, we would also like to include, in our predictions,all the insights we have about driver behavior, physics, or vehicle dynamics. This is where model based approaches can help.
 The way these approaches typically work is as follows:
@@ -119,7 +122,7 @@ Notice: There is so much uncertainty inherent to predicting the behaviors of oth
 #### 4.	The fourth and final step is to predict a trajectory for each behavior. Trajectory generation is straightforward once we have a process model. We simply iterate our model over and over until we've generated a prediction that spans whatever time horizon we are supposed to cover. Note that each iteration of the process model will necessarily add uncertainty to our prediction.
 
 
-## 3. Data driven approach
+## 4. Data driven approach
 
 
 Well with the purely data driven approach we have a truly blackbox algorithm and this algorithm will be trained on lots of training data. Once it's trained we just fitted the observed behavior and let it make a prediction about what will happen next.
