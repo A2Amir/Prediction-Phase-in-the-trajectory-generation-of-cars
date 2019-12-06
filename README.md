@@ -58,11 +58,12 @@ Typically, these predictions are represented by a set of possible trajectories l
 Ideally, we would also like to include, in our predictions,all the insights we have about driver behavior, physics, or vehicle dynamics. This is where model based approaches can help.
 The way these approaches typically work is as follows.
 
-1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
+#### 1.	For each object identify all the behaviours that object is likely to do in the current situation. The behaviour for a vehicle could be something like change lanes, turn left and for a pedestrian, it could be cross the street on pedestrian crossing. For our intersection scenario, the behaviours could be go straight, turn left, turn right (Whatever it is, it needs to be something that we can describe mathematically).
 
-2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here.
 
-In general, there is a tradeoff between simplicity and accuracy when choosing a process model:
+#### 2.	Step two, define a process model for each behavior. A process model is a mathematical description of object motion for behavior. It is a function, which can be used to compute the state of the object at time t+1 from the state at time t. The process model must incorporate some uncertainty, which represents how much we trust our model. How do we describe each behavior mathematically? We have many options here.
+
+  In general, there is a tradeoff between simplicity and accuracy when choosing a process model:
 
 * One very simple approach is to treat the car as a point particle with holonomic properties. This means we assume the point can move in any direction at any time. Which of course is a very simplistic assumption. 
 
@@ -72,9 +73,14 @@ In general, there is a tradeoff between simplicity and accuracy when choosing a 
  
 * The next step in complexity happens when we allow non-linearities into our model. Typically, if you start incorporating heading into our state vector, you will end up with sines and cosines in our model equations. 
 
-An example of a non-linear point model of lane following could look like below in Cartesian coordinates. Note the presence of cosine and sine, which are where the non-linearity comes in. 
+   An example of a non-linear point model of lane following could look like below in Cartesian coordinates. Note the presence of cosine and sine, which are where the non-linearity comes in. 
 
  <p align="right"> <img src="./img/12.png" style="right;" alt=" process model  " width="400" height="200"> </p> 
+
+* The next jump in complexity happens when we take into account that a car is a non-holonomic system. A popular approach is to use a bicycle model, which looks like this in an inertial cartesian reference frame. A bicycle model takes two inputs, the steering angle and the acceleration. 
+
+   For the steering angle, we could use a PID controller with the target lane center line as the reference line. For the acceleration, we could once again use a constant velocity model, or a constant acceleration model, or if we wanted more complex acceleration behavior, we could use a PID controller with the speed limit as the target. 
+
 
 ## 3. Data driven approach
 
