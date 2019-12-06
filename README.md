@@ -113,7 +113,7 @@ With all data driven prediction techniques, there will be two phases:
 
  <p align="right"> <img src="./img/8.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
 
-**Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
+   **Note that in some situations you may obtain even more clusters than that.For example, if this lane is controlled by a traffic light instead of stop,your clustering algorithm will probably create twice as many clusters. Three of them go through the intersection without stopping and three of them stop at the traffic light first.**
 
 
 
@@ -122,7 +122,7 @@ With all data driven prediction techniques, there will be two phases:
 
  <p align="right"> <img src="./img/9.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
  
- At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
+   At this point, we have a trained model of typical car behavior at this intersection.The next step is to use this model on the road to actually generate predictions.
 
 #### Online prediction phase:
 
@@ -135,7 +135,7 @@ Once our clustering algorithm has identified clusters and prototype trajectories
 * Next we compare it to the corresponding segments of the prototype trajectories for each cluster.This comparison is done using the same similarity measure we used earlier to perform the clustering.The belief for each cluster is updated based on how similar the partial trajectory is to the prototype trajectories.
 * And finally, we compute a predicted trajectory for each cluster.For example, by taking the most similar prototype trajectory.
 
-Let's make this more clear by following the gif below:
+  Let's make this more clear by following the gif below:
 
  <p align="right"> <img src="./img/33.gif" style="right;" alt="Online prediction phase" width="700" height="400"> </p> 
 
