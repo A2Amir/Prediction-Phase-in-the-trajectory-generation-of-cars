@@ -203,13 +203,13 @@ In practice, implementing a good Gaussian Naive Bayes classifier is all about:
 
 With Frenet coordinates, we use the variables s and d to describe a vehicle's position on the road. The s coordinate represents distance along the road (also known as longitudinal displacement) and the d coordinate represents side-to-side position on the road (also known as lateral displacement).
 
- <p align="right"> <img src="./img/15.png" style="right;" alt=" Frenet Coordinates" width="700" height="400" > </p> 
+ <p align="right"> <img src="./img/17.png" style="right;" alt=" Frenet Coordinates" width="400" height="300" > </p> 
 
 
 At the bottom we have s=0 to represent the beginning of the segment of road we are thinking about and d=0 to represent the center line of that road. To the left of the center line we have negative d and to the right d is positive.
 So what does a typical trajectory look like when presented in Frenet coordinates?
 
- <p align="right"> <img src="./img/16.png" style="right;" alt=" Frenet Coordinates" width="300" height="400" > </p> 
+ <p align="right"> <img src="./img/18.png" style="right;" alt=" Frenet Coordinates" width="300" height="500" > </p> 
 
 It looks straight! In fact, if this vehicle were moving at a constant speed of v0 we could write a mathematical description of the vehicle's position as:
 
