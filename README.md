@@ -91,7 +91,7 @@ The way these approaches typically work is as follows.
 
  
 <b> 
-Note: how all the models contain an additional term W. This is where the uncertainty on the process model is stored. A classic choice to represent uncertainty is a multivariate Gaussian with zero mean. 
+Notice: how all the models contain an additional term W. This is where the uncertainty on the process model is stored. A classic choice to represent uncertainty is a multivariate Gaussian with zero mean. 
 
 Notice: There is so much uncertainty inherent to predicting the behaviors of other drivers that minor accuracy improvements to process models just aren't worth the computational overhead that they come with. 
 
