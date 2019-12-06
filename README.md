@@ -82,7 +82,7 @@ The way these approaches typically work is as follows:
 
 * The next jump in complexity happens when we take into account that a car is a non-holonomic system. A popular approach is to use a bicycle model, which looks like this in an inertial cartesian reference frame. A bicycle model takes two inputs, the steering angle and the acceleration. 
 
- <p align="right"> <img src="./img/13.png" style="right;" alt=" process model  " width="400" height="400"> </p> 
+ <p align="right"> <img src="./img/13.png" style="right;" alt=" process model  " width="400" height="300"> </p> 
 
    For the steering angle, we could use a PID controller with the target lane center line as the reference line. For the acceleration, we could once again use a constant velocity model, or a constant acceleration model, or if we wanted more complex acceleration behavior, we could use a PID controller with the speed limit as the target. 
 
@@ -180,8 +180,14 @@ Once our clustering algorithm has identified clusters and prototype trajectories
 
  <p align="right"> <img src="./img/33.gif" style="right;" alt="Online prediction phase" width="700" height="400"> </p> 
 
-## Pros and Cons:
+## 5. Hybrid Approaches:
 
 Model based approaches incorporate our knowledge of physics constraints imposed by the road traffic and  data driven approaches are nice because they let us use data to extract subtle patterns that would otherwise be missed by model based approaches.For example differences in vehicle behavior at an intersection during different times.
+
+In practice, the best way to do prediction is often by taking a hybrid approach that takes advantage of the strengths of both types of approaches. Remember earlier when we talked about how model based approaches combine process models with a multimodal estimator? Well, the multimodal estimator could be replaced with a machine learning approach. To replace that component with a machine learning approach, the type of algorithm we need is a Naive Bayes classifier.
+
+
+
+
 
 
