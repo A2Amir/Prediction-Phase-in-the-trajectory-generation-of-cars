@@ -228,10 +228,22 @@ A Gaussian Naive Bayes classifier can predict the behavior of vehicles on a high
  <p align="right"> <img src="./img/19.png" style="right;" alt="  three maneuvers" width="600" height="400" > </p> 
 
 A Naive Bayes classifier that can predict which of these three maneuvers a vehicle is engaged in given a single coordinate (sampled from the trajectories shown below). 
-Each coordinate contains 4 features: 
-•	s
-•	d
-•	s<sup>.</sup>
-•	d<sup>.</sup>
 
+Each coordinate contains 4 features: 
+* s
+* d
+* s<sup>.</sup>
+* d<sup>.</sup>
+
+#### Instructions:
+
+1.	Implement the train(data, labels) method in the class GNB:
+   
+   Training a Gaussian Naive Bayes classifier consists of computing and storing the mean and standard deviation from the data for each label/feature pair. For example, given the label "change lanes left” and the feature s˙\dot, it would be necessary to compute and store the mean and standard deviation of s˙\dot over all data points with the "change lanes left” label.
+   
+<p align="right"> <img src="./img/20.png" style="right;" alt="  STD" width="350" height="200" > </p> 
+<p align="right"> <img src="./img/21.png" style="right;" alt="  MEAN" width="350" height="150" > </p> 
+
+   Additionally, it will be convenient in this step to compute and store the prior probability p(C<sub>k</sub>) for each label. This can be done by keeping track of the number of times each label appears in the training data.
+   
 
