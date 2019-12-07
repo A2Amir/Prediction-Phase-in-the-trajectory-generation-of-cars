@@ -235,11 +235,11 @@ Each coordinate contains 4 features:
 * s<sup>.</sup>
 * d<sup>.</sup>
 
-#### Instructions:
+### Instructions:
 
-1.	Implement the train(data, labels) method in the class GNB:
+#### 1.	Implement the train(data, labels) method:
    
-   Training a Gaussian Naive Bayes classifier consists of computing and storing the mean and standard deviation from the data for each label/feature pair. For example, given the label "change lanes left” and the feature s˙\dot, it would be necessary to compute and store the mean and standard deviation of s˙\dot over all data points with the "change lanes left” label.
+   Training a Gaussian Naive Bayes classifier consists of computing and storing the mean and standard deviation from the data for each label/feature pair. For example, given the label "change lanes left” and the feature s˙, it would be necessary to compute and store the mean and standard deviation of s˙ over all data points with the "change lanes left” label.
    
 <p align="right"> <img src="./img/20.png" style="right;" alt="  STD" width="350" height="200" > </p> 
 <p align="right"> <img src="./img/21.png" style="right;" alt="  MEAN" width="350" height="150" > </p> 
@@ -247,3 +247,17 @@ Each coordinate contains 4 features:
    Additionally, it will be convenient in this step to compute and store the prior probability p(C<sub>k</sub>) for each label. This can be done by keeping track of the number of times each label appears in the training data.
    
 
+
+#### 2.	Implement the predict(observation) method:
+
+   Given a new data point, prediction requires two steps: 
+   1.	Compute the conditional probabilities for each feature/label combination. For a feature x and label C with mean μ and standard deviation σ (computed in training), the conditional probability can be computed using the formula here:
+
+<p align="right"> <img src="./img/22.png" style="right;" alt="  Compute the conditional probabilities" width="450" height="100" > </p> 
+    Here v is the value of feature x in the new data point.
+
+  2.	Use the conditional probabilities in a Naive Bayes classifier. This can be done using the formula here:
+ 
+ <p align="right"> <img src="./img/23.png" style="right;" alt="  Use the conditional probabilities in a Naive Bayes classifier" width="450" height="100" > </p> 
+ 
+ In this formula, the argmax is taken over all possible labels C<sub>k</sub> and the product is taken over all features x<sub>i</sub> with values v<sub>i</sub>
