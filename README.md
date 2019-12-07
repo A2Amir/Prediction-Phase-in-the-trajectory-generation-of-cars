@@ -217,7 +217,7 @@ s(t)=v<sub>0</sub>t
 
 d(t)=0
 
-## 7. Implement Naive Bayes C++ and Python
+## 7. Implement Naive Bayes [C++](https://github.com/A2Amir/Prediction-Phase-in-the-trajectory-generation-of-cars/blob/master/C%2B%2B/main.cpp) and [Python](https://github.com/A2Amir/Prediction-Phase-in-the-trajectory-generation-of-cars/blob/master/GaussianNavieBaysian.ipynb)
 
 A Gaussian Naive Bayes classifier can predict the behavior of vehicles on a highway. In the image below you can see the behaviors you'll be looking for on a 3 lane highway (with lanes of 4 meter width). The dots represent the d (y axis) and s (x axis) coordinates of vehicles as they either...
 
