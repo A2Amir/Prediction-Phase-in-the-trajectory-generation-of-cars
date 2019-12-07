@@ -219,4 +219,19 @@ d(t)=0
 
 ## 7. Implement Naive Bayes C++ and Python
 
+A Gaussian Naive Bayes classifier can predict the behavior of vehicles on a highway. In the image below you can see the behaviors you'll be looking for on a 3 lane highway (with lanes of 4 meter width). The dots represent the d (y axis) and s (x axis) coordinates of vehicles as they either...
+
+1.	change lanes left (shown in blue)
+2.	keep lane (shown in black)
+3.	or change lanes right (shown in red)
+
+ <p align="right"> <img src="./img/19.png" style="right;" alt="  three maneuvers" width="600" height="400" > </p> 
+
+A Naive Bayes classifier that can predict which of these three maneuvers a vehicle is engaged in given a single coordinate (sampled from the trajectories shown below). 
+Each coordinate contains 4 features: 
+•	s
+•	d
+•	s<sup>.</sup>
+•	d<sup>.</sup>
+
 
