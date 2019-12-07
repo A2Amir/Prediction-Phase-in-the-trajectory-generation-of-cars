@@ -254,10 +254,11 @@ Each coordinate contains 4 features:
    1.	Compute the conditional probabilities for each feature/label combination. For a feature x and label C with mean μ and standard deviation σ (computed in training), the conditional probability can be computed using the formula here:
 
 <p align="right"> <img src="./img/22.png" style="right;" alt="  Compute the conditional probabilities" width="450" height="100" > </p> 
-    Here v is the value of feature x in the new data point.
+
+      Here v is the value of feature x in the new data point.
 
   2.	Use the conditional probabilities in a Naive Bayes classifier. This can be done using the formula here:
  
  <p align="right"> <img src="./img/23.png" style="right;" alt="  Use the conditional probabilities in a Naive Bayes classifier" width="450" height="100" > </p> 
  
- In this formula, the argmax is taken over all possible labels C<sub>k</sub> and the product is taken over all features x<sub>i</sub> with values v<sub>i</sub>
+   In this formula, the argmax is taken over all possible labels C<sub>k</sub> and the product is taken over all features x<sub>i</sub> with values v<sub>i</sub>
