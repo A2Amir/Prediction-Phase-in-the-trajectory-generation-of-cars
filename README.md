@@ -261,4 +261,4 @@ Each coordinate contains 4 features:
  
  <p align="right"> <img src="./img/23.png" style="right;" alt="  Use the conditional probabilities in a Naive Bayes classifier" width="450" height="100" > </p> 
  
-   In this formula, the argmax is taken over all possible labels C<sub>k</sub> and the product is taken over all features x<sub>i</sub> with values v<sub>i</sub>
+   In this formula, the argmax is taken over all possible labels C<sub>k</sub> and the product is taken over all features x<sub>i</sub> with values v<sub>i</sub>.
