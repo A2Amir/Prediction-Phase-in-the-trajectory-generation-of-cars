@@ -143,7 +143,7 @@ With all data driven prediction techniques, there will be two phases:
 
 * The first step of an offline training phase is to get a lot of data which you might do by placing a static camera at an intersection.
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
-* Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below.
+* Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below(without blau, ping and yellow lines).
 
  <p align="right"> <img src="./img/7.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
 
