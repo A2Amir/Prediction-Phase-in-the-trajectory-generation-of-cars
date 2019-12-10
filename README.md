@@ -143,7 +143,7 @@ With all data driven prediction techniques, there will be two phases:
 
 * The first step of an offline training phase is to get a lot of data which you might do by placing a static camera at an intersection.
 * Then, we have to clean the data since some of the cars we observe may be occluded or something else went wrong in the processing step.So we need to discard the bad data.
-* Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below(without blau, ping and yellow lines).
+* Once the data is gathered and cleaned up,we would be left with a bunch of trajectories that look something like below(without blau, ping and red lines).
 
  <p align="right"> <img src="./img/7.png" style="right;" alt="Trajectory Clustering" width="700" height="400"> </p> 
 
@@ -193,7 +193,7 @@ When Naive Bayes goes in distribution for the feature variables then called Gaus
 
 In practice, implementing a good Gaussian Naive Bayes classifier is all about:
 * One, selecting the correct feature variables for the classification problem.
-* Two identifying some good means and variances for different classes.And we can either guess these numbers or we can look at lots of data to learn them(if you have access to lots of data).
+* Two identifying some good means and variances for different classes. We can either guess these numbers or we can look at lots of data to learn them(if you have access to lots of data).
 
 
 
